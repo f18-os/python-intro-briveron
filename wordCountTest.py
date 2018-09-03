@@ -23,8 +23,8 @@ if not os.path.exists("wordCount.py"):
 if not os.path.exists(textFname):
     print ("text file input %s doesn't exist! Exiting" % textFname)
     exit()
-    
-#execute the program with 
+
+#execute the program with
 subprocess.call(["python3", "./wordCount.py", textFname, outputFname])
 
 #make sure output file exists
@@ -32,7 +32,7 @@ if not os.path.exists(outputFname):
     print ("wordCount output file %s doesn't exist! Exiting" % outputFname)
     exit()
 
-    
+
 #stats
 passed = True
 faults = 0
@@ -72,7 +72,7 @@ with open(outputFname, 'r') as outputFile:
             faults += 1
         test[word[0]] = int(word[1])
         lastWord = word[0]
-        
+
 # see if test is missing words from master
 for key in master:
     if key not in test:
@@ -86,8 +86,8 @@ for key in test:
         print ("Extra word in test file: %s" % key)
         passed = False
         faults += 1
-        
-# see if counts match        
+
+# see if counts match
 for key in master:
     if key in test and test[key] != master[key]:
         print ("Count mismatch for %s, should be %s value is %s" % (key, master[key], test[key]))
@@ -98,4 +98,3 @@ if passed:
 else:
     print ("Error rate {0:.3f}%".format(faults * 100.0 / words))
     print ("Failed!")
-        
