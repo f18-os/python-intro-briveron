@@ -3,6 +3,7 @@ import sys        # command line arguments
 import re         # regular expression tools
 import os         # checking if file exists
 import subprocess # executing program
+import string
 
 # set input and output files
 if len(sys.argv) is not 3:
@@ -15,7 +16,6 @@ outputFname = sys.argv[2]
 open(outputFname, 'w').close()
 
 
-import string
 frequency = {}
 document_text = open(textFname, 'r')
 text_string = document_text.read().lower()
@@ -37,3 +37,4 @@ for words in frequency_list:
     f.write("\n")
 
     #print (words, frequency[words])
+    #created with the help of Abder-Rahman Ali from online sorces https://code.tutsplus.com/tutorials/counting-word-frequency-in-a-file-using-python--cms-25965
