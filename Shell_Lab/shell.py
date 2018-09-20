@@ -11,22 +11,56 @@ pid = os.getpid()               # get and remember pid
 leave=""
 leave=input("[Brian_Shell]$ ")
 
+
+def isPipe(userIn):
+    for i, Eric in enumerate(userIn):
+        if Eric== '|':
+            #print("I see the |")
+            left,right = userIn.split('|')
+
+
+
+
+
+
+
+
+
 while leave!="exit":
-    leave=input("[Brian_Shell]$ ").split()
+    leave=input("[Brian_Shell]$ ")
     print(leave)
     rc = os.fork()
 
-
     args = leave
+
+    if rc < 0:
+        sys.exit(1)
+
+
+    for i, args in enumerate(args):
+        if args[i]== '|':
+            #print("I see the |")
+            left,right = args.split('|')
+            print(left, "|" ,right)
+
+
+
+
+
+
+
+
+
+
+
+
 
     os.close(1)                 # redirect child's stdout
     sys.stdout = open("p4-output.txt", "w")
     fd = sys.stdout.fileno() # os.open("p4-output.txt", os.O_CREAT)
     os.set_inheritable(fd, True)
 
-    if rc < 0:
-        #os.write(2, ("fork failed, returning %d\n" % rc).encode())
-        sys.exit(1)
+
 
     elif rc == 0:                   # child
         #os.write(1, ("Child: My pid==%d.  Parent's pid=%d\n" %

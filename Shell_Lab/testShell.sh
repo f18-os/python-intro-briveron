@@ -1,5 +1,5 @@
 #set -x
-if [ -z $1 ] ; then 
+if [ -z $1 ] ; then
     echo "Usage: $0 [myShell]" >&2
     exit 1
 fi
@@ -7,13 +7,11 @@ myShell=$1
 
 export PS1=""			# supress prompt
 
-
-
 rm -f testLog.txt
 
 
 chkcmd () {
-    echo "Testing $2" 
+    echo "Testing $2"
     echo -e "$1" | bash > /tmp/t1
     echo -e "$1" | $myShell > /tmp/t2
     if diff /tmp/t1 /tmp/t2 ; then
@@ -42,6 +40,3 @@ echo -e "\n\nResults"
 cat testLog.txt
 
 rm /tmp/c1 /tmp/t1 /tmp/t2
-
-
-
