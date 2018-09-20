@@ -6,7 +6,7 @@ pid = os.getpid()               # get and remember pid
 
 #os.write(1, ("About to fork (pid=%d)\n" % pid).encode())
 
-args = ["wc", "cat"]
+
 
 leave=""
 leave=input("[Brian_Shell]$ ")
@@ -17,11 +17,7 @@ while leave!="exit":
     rc = os.fork()
 
 
-
-
-
-
-    args = ["wc", "p3-exec.py"]
+    args = leave
 
     os.close(1)                 # redirect child's stdout
     sys.stdout = open("p4-output.txt", "w")
@@ -40,7 +36,7 @@ while leave!="exit":
         for dir in re.split(":", os.environ['PATH']): # try each directory in path
             program = "%s/%s" % (dir, leave[0])
             try:
-                os.execve(program, leave[0:], os.environ) # try to exec program
+                os.execve(program, args, os.environ) # try to exec program
             except FileNotFoundError:             # ...expected
                 pass                              # ...fail quietly
 
